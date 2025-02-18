@@ -8,8 +8,13 @@ export const NewTmb = () => {
     const [inputHeight, setInputHeight] = useState('');
     const [inputGender, setInputGender] = useState('masculino');
     const [inputSedentary, setInputSedentary] = useState('sedentario');
+    const [inputObjective, setInputObjective] = useState('manter');
     const [text, setText] = useState('');
     const [text2, setText2] = useState('');
+    const [text3, setText3] = useState('');
+    const [text4, setText4] = useState('');
+    const [text5, setText5] = useState('');
+    const [text6, setText6] = useState('');
 
     const handleInputChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value); 
@@ -30,6 +35,9 @@ export const NewTmb = () => {
 
       const handleSedentaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setInputSedentary(e.target.value); 
+      };
+      const handleObjectiveChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setInputObjective(e.target.value); 
       };
 
 
@@ -55,6 +63,7 @@ export const NewTmb = () => {
             console.log('é menino sa porra')
         }
         console.log(inputSedentary)
+
         tmb = tmbBase
 
         switch (inputSedentary) {
@@ -70,9 +79,34 @@ export const NewTmb = () => {
             break;
           }
 
+          let proteina = parseInt(inputWeight) * 2;
+          let gordura = parseInt(inputWeight); 
+          let carboidratos: number = 0;
+          let deficitCalorico: number = 0;
 
+            var caloriaProteina = proteina * 4
+            var caloriaGordura = gordura * 9
+            var somaDeTudo = (caloriaProteina + caloriaGordura)
+          
+          switch (inputObjective) {
+            case 'emagrecimento': 
+           deficitCalorico = tmb * 0.85
+           descobrirCarbo = (deficitCalorico - somaDeTudo )
+           carboidratos = (descobrirCarbo / 4)
+            break;
 
+            case 'manter': 
+            var descobrirCarbo = (tmb - somaDeTudo )
+            carboidratos = (descobrirCarbo / 4)
+            break;
 
+            case 'ganho': 
+            deficitCalorico = tmb / 0.85
+            proteina = parseInt(inputWeight) * 1.8
+            var descobrirCarbo = (deficitCalorico - somaDeTudo )
+            carboidratos = (descobrirCarbo / 4)
+            break;
+          }
 
           
           if (!inputYear || !inputWeight || !inputHeight) {
@@ -81,10 +115,14 @@ export const NewTmb = () => {
           } else {
             setText(`Você gasta ${tmbBase.toFixed(0)} calorias sem fazer nada! `);
             setText2(`De acordo com sua atividade diaria, seus gastos calóricos são: ${tmb.toFixed(0)}!`);
+            setText3(`PROTEINA: ${proteina}!`);
+            setText4(`GORDURA: ${gordura}!`);
+            setText5(`CARBO: ${carboidratos.toFixed(0)}!`);
+            setText6(`DEFICIT CALORICO: ${deficitCalorico.toFixed(0)}!`);
           }
-
-          
+      
       }
+
 
       
      
@@ -128,17 +166,35 @@ export const NewTmb = () => {
                         <option value="moderamente" >Moderamente ativo (3 a 5 dias por semana)</option>
                         <option value="muito" >Muito ativo (5 a 7 vezes por semana)</option>
                         <option value="extremamente" >Extremamente ativo (2 vezes por dia)</option>
+                        
+                    </select>   
+                </div>
+
+                <div className="flex flex-col w-52 mt-2">
+                    <label className='text-white'>Qual o seu objetivo?</label>
+                    <select name="select" className="text-black" value={inputObjective} onChange={handleObjectiveChange}>
+                        <option value="emagrecimento" selected>Emagrecimento</option>
+                        <option value="ganho" >Ganho de massa</option>
+                        <option value="manter" >Manter o meu peso</option> 
                     </select>   
                 </div>
             
                 <div>
                     <button className="bg-sky-600 p-2 w-52 mt-5 font-bold text-white" onClick={calcMtb}>Calcular</button>
                  </div>
+                 
+                
 
                  <div>
                     <p className='mt-5 text-center text-white'>{text}</p>
                     <p className='text-center text-white'>{text2}</p>
+                    <p className='text-center text-white'>{text3}</p>
+                    <p className='text-center text-white'>{text4}</p>
+                    <p className='text-center text-white'>{text5}</p>
+                    <p className='text-center text-white'>{text6}</p>
                  </div>
+
+                 
         </div>
     );
 } 
