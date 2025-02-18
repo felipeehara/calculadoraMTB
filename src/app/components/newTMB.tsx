@@ -78,7 +78,7 @@ export const NewTmb = () => {
             case 'extremamente': tmb = (tmb * 1.9)
             break;
           }
-          
+
           let proteina = parseInt(inputWeight) * 2;
           let gordura = parseInt(inputWeight); 
           let carboidratos: number = 0;
@@ -115,13 +115,9 @@ export const NewTmb = () => {
           } else {
             setText(`Você gasta ${tmbBase.toFixed(0)} calorias sem fazer nada! `);
             setText2(`De acordo com sua atividade diaria, seus gastos calóricos são: ${tmb.toFixed(0)}!`);
-
-
-
             setText3(`PROTEINA: ${proteina}!`);
             setText4(`GORDURA: ${gordura}!`);
             setText5(`CARBO: ${carboidratos.toFixed(0)}!`);
-
             setText6(`DEFICIT CALORICO: ${deficitCalorico.toFixed(0)}!`);
           }
       
