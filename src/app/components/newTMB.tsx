@@ -199,8 +199,8 @@ export const NewTmb = () => {
     </select>
   </div>
 
-  <button
-    className="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+    <button
+    className="w-full p-3 rounded-lg bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all duration-300"
     onClick={calcMtb}
   >
     Calcular
