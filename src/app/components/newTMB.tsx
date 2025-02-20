@@ -95,8 +95,8 @@ export const NewTmb = () => {
       setText(`Preencha todos os campos por favor!`);
       setText2('');
     } else {
-      setText(`Você gasta ${tmbBase.toFixed(0)} calorias sem fazer nada!`);
-      setText2(`De acordo com sua atividade diaria, seus gastos calóricos são: ${tmb.toFixed(0)}!`);
+      setText(`Gasto calórico em repouso: ${tmbBase.toFixed(0)} Kcal`);
+      setText2(`Gasto calórico diário com atividades: ${tmb.toFixed(0)} Kcal`);
       setText3(`Proteina: ${proteina}g`);
       setText4(`Gordura: ${gordura}g`);
       setText5(`Carboidratos: ${carboidratos.toFixed(0)}g`);
@@ -105,7 +105,7 @@ export const NewTmb = () => {
       } else if (inputObjective === "ganho") {
         setText6(`Superávit Calórico: ${deficitCalorico.toFixed(0)}Kcal`);
       } else {
-        setText6(`Manter Peso: ${tmb.toFixed(0)}Kcal`);
+        setText6(`Manter Peso: ${tmb.toFixed(0)} Kcal`);
       }
       setText7(`De acordo com o seu objetivo, aqui está a sugestão de como sua alimentação diária pode ser ajustada para melhores resultados:`);
     }
