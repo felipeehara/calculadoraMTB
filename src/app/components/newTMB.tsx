@@ -98,8 +98,8 @@ export const NewTmb = () => {
       setText(`Gasto calórico em repouso: ${tmbBase.toFixed(0)} Kcal`);
       setText2(`Gasto calórico diário com atividades: ${tmb.toFixed(0)} Kcal`);
       setText3(`Proteina: ${proteina}g`);
-      setText4(`Gordura: ${gordura}g`);
-      setText5(`Carboidratos: ${carboidratos.toFixed(0)}g`);
+      setText5(`Gordura: ${gordura}g`);
+      setText4(`Carboidratos: ${carboidratos.toFixed(0)}g`);
       if (inputObjective === "emagrecimento") {
         setText6(`DEFICIT CALÓRICO: ${deficitCalorico.toFixed(0)}Kcal`);
       } else if (inputObjective === "ganho") {
