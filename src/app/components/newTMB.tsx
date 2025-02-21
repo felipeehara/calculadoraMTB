@@ -6,9 +6,12 @@ import proteinFoods from "@/app/Data/proteins";
 import carbFoods from "@/app/Data/carbs";
 import fatFoods from "@/app/Data/fats";
 import { motion } from "framer-motion";
+import WhatsAppShareButton from './ShareButton';
 
 
 export const NewTmb = () => {
+
+  
 
   const [isProteinModalOpen, setProteinModalOpen] = useState(false);
   const [isCarbModalOpen, setCarbModalOpen] = useState(false);
@@ -241,33 +244,38 @@ export const NewTmb = () => {
       {text7}
     </p>
   )}
-  {/* Exibir os macronutrientes em cartões separados */}
-  <div className="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4 justify-center">
-    {text3 && (
-      <div className="bg-blue-500 rounded-2xl p-4 w-64 text-white font-bold shadow-md">
-        {text3}
-      </div>
-    )}
-    {text4 && (
-      <div className="bg-red-500 rounded-2xl p-4 w-64 text-white font-bold shadow-md">
-        {text4}
-      </div>
-    )}
-    {text5 && (
-      <div className="bg-yellow-400 rounded-2xl p-4 w-64 text-black font-bold shadow-md">
-        {text5}
-      </div>
-    )}
 
-    
-   
-  </div>
-
-  {text6 && (
-    <div className="mt-5 bg-green-500 rounded-2xl p-4 text-white font-bold shadow-md">
-      {text6}
+{text7 && (
+    <div className="flex flex-col items-center space-y-4">
+      <WhatsAppShareButton protein={proteina} carbs={carboidratos} fats={gordura} />
     </div>
   )}
+
+{/* Seção dos macronutrientes em cartões estilizados */}
+<div className="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-6 justify-center">
+  {text3 && (
+    <div className="bg-blue-500 rounded-2xl p-6 w-64 text-white font-bold shadow-lg transition-transform transform hover:scale-105">
+      {text3}
+    </div>
+  )}
+  {text4 && (
+    <div className="bg-red-500 rounded-2xl p-6 w-64 text-white font-bold shadow-lg transition-transform transform hover:scale-105">
+      {text4}
+    </div>
+  )}
+  {text5 && (
+    <div className="bg-yellow-400 rounded-2xl p-6 w-64 text-black font-bold shadow-lg transition-transform transform hover:scale-105">
+      {text5}
+    </div>
+  )}
+</div>
+
+{/* Seção de informação adicional */}
+{text6 && (
+  <div className="mt-6 bg-green-500 rounded-2xl p-6 text-white font-bold shadow-lg text-center transition-transform transform hover:scale-105">
+    {text6}
+  </div>
+)}
 </div>
       <div className='h-72 w-96'>
         <BarChart proteina={proteina} carboidratos={carboidratos} gordura={gordura} />
@@ -381,7 +389,7 @@ export const NewTmb = () => {
   </div>
 )}
 
-
+  
      
   
 
