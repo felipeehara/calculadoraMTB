@@ -5,7 +5,7 @@ import Modal from './ModalProteina';
 import proteinFoods from "@/app/Data/proteins";
 import carbFoods from "@/app/Data/carbs";
 import fatFoods from "@/app/Data/fats";
-
+import { motion } from "framer-motion";
 
 
 export const NewTmb = () => {
@@ -274,85 +274,110 @@ export const NewTmb = () => {
       </div>
 
       {text6 && (
-    <div className="text-lg font-semibold bg-gray-600 p-4 rounded-2xl shadow-md text-white">
-      <p>Alimentos que vão te ajudar a alcançar suas metas diárias:</p>
-    </div>
-  )}
+  <motion.div
+    className="text-lg font-semibold bg-gradient-to-r from-gray-700 to-gray-900 p-4 rounded-2xl shadow-lg text-white text-center"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <p>Alimentos que vão te ajudar a alcançar suas metas diárias:</p>
+  </motion.div>
+)}
 
-      {text6 && (
-  <div className="p-4 flex gap-8">
-    {/* Exibir alimentos ricos em proteínas */}
+{text6 && (
+  <div className="p-4 flex flex-wrap gap-6 justify-center">
+    {/* Proteínas */}
     <div>
-      <button
+      <motion.button
         onClick={() => setProteinModalOpen(true)}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        className="px-5 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md hover:scale-105 transition-transform duration-200"
+        whileHover={{ scale: 1.1 }}
       >
         Ver Proteínas
-      </button>
+      </motion.button>
+
       <Modal isOpen={isProteinModalOpen} onClose={() => setProteinModalOpen(false)}>
-        <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
-          Alimentos Ricos em Proteínas
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
+          🥩 Alimentos Ricos em Proteínas
         </h2>
         <ul className="space-y-2">
           {proteinFoods.map((food, index) => (
-            <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
+            <motion.li
+              key={index}
+              className="flex justify-between bg-gray-100 p-3 rounded-md shadow-sm"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
               <span className="text-gray-700 font-medium">{food.name}</span>
               <span className="text-blue-600 font-semibold">{food.value} {food.unit}</span>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Modal>
     </div>
-     {/* Exibir alimentos ricos em carboidratos */}
-     <div>
-       <button
-         onClick={() => setCarbModalOpen(true)}
-         className="px-4 py-2 bg-red-500 text-white rounded-md"
-       >
-         Ver Carboidratos
-       </button>
 
-       <Modal isOpen={isCarbModalOpen} onClose={() => setCarbModalOpen(false)}>
-         <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
-           Alimentos Ricos em Carboidratos
-         </h2>
-         <ul className="space-y-2">
-           {carbFoods.map((food, index) => (
-             <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
-               <span className="text-gray-700 font-medium">{food.name}</span>
-               <span className="text-blue-600 font-semibold">
-                 {food.value} {food.unit}
-               </span>
-             </li>
-           ))}
-         </ul>
-       </Modal>
-     </div>
-        {/* Exibir alimentos ricos em gorduras */}
-        <div>
-       <button
-         onClick={() => setFatModalOpen(true)}
-         className="px-4 py-2 bg-yellow-500 text-white rounded-md"
-       >
-         Ver Gorduras
-       </button>
+    {/* Carboidratos */}
+    <div>
+      <motion.button
+        onClick={() => setCarbModalOpen(true)}
+        className="px-5 py-3 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg shadow-md hover:scale-105 transition-transform duration-200"
+        whileHover={{ scale: 1.1 }}
+      >
+        Ver Carboidratos
+      </motion.button>
 
-       <Modal isOpen={isFatModalOpen} onClose={() => setFatModalOpen(false)}>
-         <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
-           Alimentos Ricos em Gorduras
-         </h2>
-         <ul className="space-y-2">
-           {fatFoods.map((food, index) => (
-             <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
-               <span className="text-gray-700 font-medium">{food.name}</span>
-               <span className="text-blue-600 font-semibold">
-                 {food.value} {food.unit}
-               </span>
-             </li>
-           ))}
-         </ul>
-       </Modal>
-     </div>
+      <Modal isOpen={isCarbModalOpen} onClose={() => setCarbModalOpen(false)}>
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
+          🍞 Alimentos Ricos em Carboidratos
+        </h2>
+        <ul className="space-y-2">
+          {carbFoods.map((food, index) => (
+            <motion.li
+              key={index}
+              className="flex justify-between bg-gray-100 p-3 rounded-md shadow-sm"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <span className="text-gray-700 font-medium">{food.name}</span>
+              <span className="text-red-600 font-semibold">{food.value} {food.unit}</span>
+            </motion.li>
+          ))}
+        </ul>
+      </Modal>
+    </div>
+
+    {/* Gorduras */}
+    <div>
+      <motion.button
+        onClick={() => setFatModalOpen(true)}
+        className="px-5 py-3 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white rounded-lg shadow-md hover:scale-105 transition-transform duration-200"
+        whileHover={{ scale: 1.1 }}
+      >
+        Ver Gorduras
+      </motion.button>
+
+      <Modal isOpen={isFatModalOpen} onClose={() => setFatModalOpen(false)}>
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
+          🥑 Alimentos Ricos em Gorduras
+        </h2>
+        <ul className="space-y-2">
+          {fatFoods.map((food, index) => (
+            <motion.li
+              key={index}
+              className="flex justify-between bg-gray-100 p-3 rounded-md shadow-sm"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <span className="text-gray-700 font-medium">{food.name}</span>
+              <span className="text-yellow-600 font-semibold">{food.value} {food.unit}</span>
+            </motion.li>
+          ))}
+        </ul>
+      </Modal>
+    </div>
   </div>
 )}
 
