@@ -1,8 +1,19 @@
 "use client"
 import { useState } from 'react';
 import BarChart from '../components/BarChart';
+import Modal from './ModalProteina';
+import proteinFoods from "@/app/Data/proteins";
+import carbFoods from "@/app/Data/carbs";
+import fatFoods from "@/app/Data/fats";
+
+
 
 export const NewTmb = () => {
+
+  const [isProteinModalOpen, setProteinModalOpen] = useState(false);
+  const [isCarbModalOpen, setCarbModalOpen] = useState(false);
+  const [isFatModalOpen, setFatModalOpen] = useState(false);
+
   const [inputYear, setInputValue] = useState('');
   const [inputWeight, setInputWeight] = useState('');
   const [inputHeight, setInputHeight] = useState('');
@@ -116,6 +127,9 @@ export const NewTmb = () => {
     setCarboidratos(carboidratos);
     setDeficitCalorico(deficitCalorico);
   };
+
+
+  
 // 
   return (
     <div className="flex justify-center h-full w-screen bg-gradient-to-b from-gray-700 to-gray-500 items-center flex-col md:bg-gradient-to-b from-gray-600 to-gray-700">
@@ -244,6 +258,9 @@ export const NewTmb = () => {
         {text5}
       </div>
     )}
+
+    
+   
   </div>
 
   {text6 && (
@@ -255,9 +272,94 @@ export const NewTmb = () => {
       <div className='h-72 w-96'>
         <BarChart proteina={proteina} carboidratos={carboidratos} gordura={gordura} />
       </div>
-      <div className=''>
-        {proteina}, {gordura}, {carboidratos} 
-      </div>
+
+      {text6 && (
+    <div className="text-lg font-semibold bg-gray-600 p-4 rounded-2xl shadow-md text-white">
+      <p>Alimentos que vão te ajudar a alcançar suas metas diárias:</p>
+    </div>
+  )}
+
+      {text6 && (
+  <div className="p-4 flex gap-8">
+    {/* Exibir alimentos ricos em proteínas */}
+    <div>
+      <button
+        onClick={() => setProteinModalOpen(true)}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+      >
+        Ver Proteínas
+      </button>
+      <Modal isOpen={isProteinModalOpen} onClose={() => setProteinModalOpen(false)}>
+        <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
+          Alimentos Ricos em Proteínas
+        </h2>
+        <ul className="space-y-2">
+          {proteinFoods.map((food, index) => (
+            <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
+              <span className="text-gray-700 font-medium">{food.name}</span>
+              <span className="text-blue-600 font-semibold">{food.value} {food.unit}</span>
+            </li>
+          ))}
+        </ul>
+      </Modal>
+    </div>
+     {/* Exibir alimentos ricos em carboidratos */}
+     <div>
+       <button
+         onClick={() => setCarbModalOpen(true)}
+         className="px-4 py-2 bg-red-500 text-white rounded-md"
+       >
+         Ver Carboidratos
+       </button>
+
+       <Modal isOpen={isCarbModalOpen} onClose={() => setCarbModalOpen(false)}>
+         <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
+           Alimentos Ricos em Carboidratos
+         </h2>
+         <ul className="space-y-2">
+           {carbFoods.map((food, index) => (
+             <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
+               <span className="text-gray-700 font-medium">{food.name}</span>
+               <span className="text-blue-600 font-semibold">
+                 {food.value} {food.unit}
+               </span>
+             </li>
+           ))}
+         </ul>
+       </Modal>
+     </div>
+        {/* Exibir alimentos ricos em gorduras */}
+        <div>
+       <button
+         onClick={() => setFatModalOpen(true)}
+         className="px-4 py-2 bg-yellow-500 text-white rounded-md"
+       >
+         Ver Gorduras
+       </button>
+
+       <Modal isOpen={isFatModalOpen} onClose={() => setFatModalOpen(false)}>
+         <h2 className="text-xl font-bold text-center mb-4 text-gray-800">
+           Alimentos Ricos em Gorduras
+         </h2>
+         <ul className="space-y-2">
+           {fatFoods.map((food, index) => (
+             <li key={index} className="flex justify-between bg-gray-100 p-2 rounded-md shadow-sm">
+               <span className="text-gray-700 font-medium">{food.name}</span>
+               <span className="text-blue-600 font-semibold">
+                 {food.value} {food.unit}
+               </span>
+             </li>
+           ))}
+         </ul>
+       </Modal>
+     </div>
+  </div>
+)}
+
+
+     
+  
+
     </div>
   );
-};
+}
